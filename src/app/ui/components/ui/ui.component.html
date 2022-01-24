@@ -1,7 +1,10 @@
 <header class="fixed-top">
     <ng-content select=".tr-header"></ng-content>
     <span (click)="toggle()">
-        <ng-content select=".tr-button"></ng-content>
+        <ng-content *ngIf="open; else buttonToOpen" select=".tr-button-to-close"></ng-content>
+        <ng-template #buttonToOpen>
+            <ng-content select=".tr-button-to-open"></ng-content>
+        </ng-template>
     </span>
 </header>
 <main [ngClass]="{'close-aside': !open}">
