@@ -1,7 +1,14 @@
 <header class="fixed-top">
     <ng-content select=".tr-header"></ng-content>
     <span (click)="toggle()">
-        <ng-content *ngIf="open; else buttonToOpen" select=".tr-button-to-close"></ng-content>
+        <!-- Consigne : 
+            utiliser une structure type ngIf;then...else + ng-container 
+            Objectif :  aller plus loin dans notre implémentation 
+        -->
+        <ng-container *ngIf="open; then buttonToClose else buttonToOpen"></ng-container>
+        <ng-template #buttonToClose>
+            <ng-content select=".tr-button-to-close"></ng-content>
+        </ng-template>
         <ng-template #buttonToOpen>
             <ng-content select=".tr-button-to-open"></ng-content>
         </ng-template>
