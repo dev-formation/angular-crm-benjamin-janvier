@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-crm-benjamin-janvier';
+  constructor(private router: Router) {
+    console.log('Config router :', this.router.config);
+  }
 }
