@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-template-container',
@@ -6,13 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./template-container.component.scss']
 })
 export class TemplateContainerComponent implements OnInit {
-  public title: string; 
+  @Input() public title!: { content: string}; 
 
-  constructor() {
-    this.title = "Oooh le jolie titre !";
-   }
+  constructor() {}
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    console.log('****** On Changes');
+  }
+
+  ngDoCheck(): void {
+    console.log('****** Si On Changes ne detecte pas le changement moi si ! ');
   }
 
 }

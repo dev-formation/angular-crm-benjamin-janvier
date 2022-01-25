@@ -8,8 +8,9 @@ import { OrdersService } from '../../services/orders.service';
   styleUrls: ['./page-list-orders.component.scss']
 })
 export class PageListOrdersComponent implements OnInit {
-
+  public titleComponent: { content: string} = { content: 'List Order'};
   constructor(private orderService: OrdersService) { 
+    console.log('****** Constructor');
     // this.orderService.collection$.subscribe(
     //   (resp: Order[]) => {
     //     console.log('Component - order list: ', resp);
@@ -24,6 +25,15 @@ export class PageListOrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('****** On Init');
+  }
+
+  public onClickInitTitle(): void {
+    this.titleComponent = { content : 'Other title' };
+  }
+
+  ngOnDestroy(): void {
+    console.log('****** On Destroy');
   }
 
 }
