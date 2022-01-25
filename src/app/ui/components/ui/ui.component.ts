@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ui.component.scss']
 })
 export class UiComponent implements OnInit {
-  public open: boolean = true;
+  public open: boolean = false;
 
   constructor() { }
 
