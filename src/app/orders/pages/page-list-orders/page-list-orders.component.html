@@ -1,4 +1,4 @@
-<app-template-container [title]="titleComponent">
-    <p>page-list-orders works!</p>
-    <button (click)="onClickInitTitle()">Init title</button>
-</app-template-container>
+<app-template-full-width [title]="titleComponent" *ngIf="collectionPage">
+    <app-table-light [collection]="collectionPage" [headers]="headersPage"></app-table-light>
+    <app-btn></app-btn>
+</app-template-full-width>

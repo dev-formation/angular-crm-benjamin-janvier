@@ -9,19 +9,19 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public titleComponent: { content: string} = { content: 'List Order'};
+  public collectionPage!: Order[];
+  public headersPage: string[];
+
   constructor(private orderService: OrdersService) { 
     console.log('****** Constructor');
-    // this.orderService.collection$.subscribe(
-    //   (resp: Order[]) => {
-    //     console.log('Component - order list: ', resp);
-    //   }
-    // )
-
-    this.orderService.subCollection$.subscribe(
-      (resp: Order[]) => {
-        console.log('Component - order list: ', resp);
+    this.orderService.collection$.subscribe(
+      (data: Order[]) => {
+        console.log('Component - order list: ', data);
+        this.collectionPage = data;
       }
     )
+
+    this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'State'];
   }
 
   ngOnInit(): void {
