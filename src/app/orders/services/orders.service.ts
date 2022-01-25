@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class OrdersService {
   public collection$: Observable<Order[]>;
+  public collectionUser$: Observable<any[]>;
   public subCollection$ = new Subject<Order[]>()
   private urlApi: string = environment.urlApi;
 
@@ -31,6 +32,8 @@ export class OrdersService {
   
   constructor(private http: HttpClient) {
     this.collection$ = this.http.get<Order[]>(`${this.urlApi}/orders`);
+
+    this.collectionUser$ = this.http.get<any[]>('https://reqres.in/api/users?page=1');
     
     this.http.get<Order[]>(`${this.urlApi}/orders`).subscribe(
       (resp: Order[]) => {

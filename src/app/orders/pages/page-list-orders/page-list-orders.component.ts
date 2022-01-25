@@ -11,7 +11,11 @@ export class PageListOrdersComponent implements OnInit {
   public titleComponent: { content: string} = { content: 'List Order'};
   public collectionPage!: Order[];
   public headersPage: string[];
-
+    
+    //Demo tableau avec user
+  // public collectionUser!: any[];
+  // public headersPageUser: string[];
+  
   constructor(private orderService: OrdersService) { 
     console.log('****** Constructor');
     this.orderService.collection$.subscribe(
@@ -20,6 +24,16 @@ export class PageListOrdersComponent implements OnInit {
         this.collectionPage = data;
       }
     )
+      //Demo tableau avec User
+    // this.orderService.collectionUser$.subscribe(
+    //   (data: any) => {
+    //     console.log('Component - order list: ', data);
+    //     this.collectionUser = data.data;
+    //   }
+    // )
+    // this.headersPageUser = ['#', 'Email', 'Prenom', 'Nom']
+
+
 
     this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'State'];
   }
