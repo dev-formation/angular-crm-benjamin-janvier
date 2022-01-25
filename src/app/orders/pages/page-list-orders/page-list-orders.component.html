@@ -6,6 +6,10 @@
             <td>{{ item.nbJours }}</td>
             <td>{{ item.tjmHt }}</td>
             <td>{{ item.state }}</td>
+            <td>{{ item | total }}</td>
+            <td>{{ item | total: true }}</td>
+            <!-- <td>{{ total(item.tjmHt, item.nbJours) }}</td>
+            <td>{{ total(item.tjmHt, item.nbJours, item.tva) }}</td> -->
         </tr>
     </app-table-light>
     <!-- Demo tableau avec user -->

@@ -8,5 +8,7 @@ export interface OrderI {
     "typePresta": string,
     "client": string,
     "comment": string,
-    "id": number
+    "id": number;
+    totalHT(): number;
+    totalTTC(): number;
 }

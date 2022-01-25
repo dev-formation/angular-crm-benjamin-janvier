@@ -11,6 +11,8 @@ export class PageListOrdersComponent implements OnInit {
   public titleComponent: { content: string} = { content: 'List Order'};
   public collectionPage!: Order[];
   public headersPage: string[];
+
+  private count = 0;
     
     //Demo tableau avec user
   // public collectionUser!: any[];
@@ -35,7 +37,7 @@ export class PageListOrdersComponent implements OnInit {
 
 
 
-    this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'State'];
+    this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'State', 'Total HT', 'Total TTC'];
   }
 
   ngOnInit(): void {
@@ -48,6 +50,19 @@ export class PageListOrdersComponent implements OnInit {
 
   ngOnDestroy(): void {
     console.log('****** On Destroy');
+  }
+
+  public total(val:number, coeff: number, tva?: number ): number {
+    if(tva) {
+      return val * coeff * (1 + tva / 100)
+    } else {
+      return val * coeff;
+    }
+  }
+
+  ngDoCheck() {
+    this.count ++;
+    console.log('Count : ', this.count);
   }
 
 }
