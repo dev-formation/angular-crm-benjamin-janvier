@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdersService } from 'src/app/orders/services/orders.service';
+import { Order } from '../../models/order';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrdersService) {
+    this.orderService.subCollection$.subscribe(
+      (resp: Order[]) => {
+        console.log('Component - header: ', resp);
+      }
+    )
+   }
 
   ngOnInit(): void {
   }

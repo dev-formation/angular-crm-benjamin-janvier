@@ -10,7 +10,13 @@ import { OrdersService } from '../../services/orders.service';
 export class PageListOrdersComponent implements OnInit {
 
   constructor(private orderService: OrdersService) { 
-    this.orderService.collection$.subscribe(
+    // this.orderService.collection$.subscribe(
+    //   (resp: Order[]) => {
+    //     console.log('Component - order list: ', resp);
+    //   }
+    // )
+
+    this.orderService.subCollection$.subscribe(
       (resp: Order[]) => {
         console.log('Component - order list: ', resp);
       }
