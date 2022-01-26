@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./template-container.component.scss']
 })
 export class TemplateContainerComponent implements OnInit {
-  @Input() public title!: { content: string}; 
+  @Input() public title!: string; 
 
   constructor() {}
 
