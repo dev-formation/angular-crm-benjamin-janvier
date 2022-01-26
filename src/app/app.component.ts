@@ -9,6 +9,6 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'angular-crm-benjamin-janvier';
   constructor(private router: Router) {
-    console.log('Config router :', this.router.config);
+    // console.log('Config router :', this.router.config);
   }
 }

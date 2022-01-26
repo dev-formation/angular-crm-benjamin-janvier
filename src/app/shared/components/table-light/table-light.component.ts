@@ -8,8 +8,6 @@ import { Order } from 'src/app/core/models/order';
 })
 export class TableLightComponent implements OnInit {
   @Input() public headers!: string[];
-  private count = 0;
-  private count2 = 0;
   constructor() { }
 
   ngOnInit(): void {
@@ -18,15 +16,18 @@ export class TableLightComponent implements OnInit {
   
   ngOnChanges(): void {
     console.log('Changes headers', this.headers);
+    console.log('-------on changes : ');
+  }
+
+  ngDoCheck(): void {
+    console.log('-------do check : ');
   }
 
   ngAfterContentChecked(): void {
-    this.count++;
-    console.log('-------Count after Content project: ', this.count);
+    console.log('-------after Content project: ');
   }
   ngAfterViewChecked(): void {
-    this.count2++;
-    console.log('-------Count after View init : ', this.count2);
+    console.log('-------Count after View init : ');
   }
 
 }
