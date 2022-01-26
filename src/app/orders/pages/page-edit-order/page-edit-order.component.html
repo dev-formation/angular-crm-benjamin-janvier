@@ -1,1 +1,3 @@
-<p>page-edit-order works!</p>
+<app-template-container *ngIf="order$ | async as order">
+    <app-form-order [init]="order" (submitted)="onSubmitUpdate($event)"></app-form-order>
+</app-template-container>

@@ -51,12 +51,12 @@
       "id": 5
     },
     {
-      "tjmHt": 1200,
+      "tjmHt": 300,
       "nbJours": 5,
       "tva": 20,
       "state": "OPTION",
-      "typePresta": "formation angular",
-      "client": "Modis",
+      "typePresta": "formation angular init",
+      "client": "Modis (Benjamin)",
       "comment": "Un commentaire pour Benjamin",
       "id": 6
     },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -17,9 +18,12 @@ export class PageListOrdersComponent implements OnInit {
   public headersPage: string[];
   public stateOrder = StateOrder;
 
-  constructor(private orderService: OrdersService, private versionService: VersionService) { 
+  constructor(
+    private orderService: OrdersService, 
+    private versionService: VersionService,
+    private router: Router) { 
     this.collectionPage$ = this.orderService.collection$;
-    this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'Total HT', 'Total TTC', 'State'];
+    this.headersPage = ['','Type Presta', 'Client', 'NbJour', 'TjmHt', 'Total HT', 'Total TTC', 'State'];
     this.versionNum$ = this.versionService.versionNum$;    
   }
 
@@ -40,5 +44,9 @@ export class PageListOrdersComponent implements OnInit {
         order.state = orderStateUpdated.state;
       }
     );
+  }
+
+  public onClickGoToEdit(clickedOrder: Order): void {
+    this.router.navigate(['orders', 'edit', clickedOrder.id]);
   }
 }
