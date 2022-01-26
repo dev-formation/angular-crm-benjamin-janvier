@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { VersionService } from 'src/app/core/services/version.service';
 import { OrdersService } from '../../services/orders.service';
@@ -14,63 +15,30 @@ export class PageListOrdersComponent implements OnInit {
   public collectionPage$!: Observable<Order[]>;
   public versionNum$!: BehaviorSubject<number>;
   public headersPage: string[];
+  public stateOrder = StateOrder;
 
-  private count = 0;
-  private sub!: Subscription;
-    
-    //Demo tableau avec user
-  // public collectionUser!: any[];
-  // public headersPageUser: string[];
-  
   constructor(private orderService: OrdersService, private versionService: VersionService) { 
-    // console.log('****** Constructor');
-    // this.orderService.collection$.subscribe(
-    //   (data: Order[]) => {
-    //     console.log('Component - order list: ', data);
-    //     this.collectionPage = data;
-    //   }
-    // )
-
     this.collectionPage$ = this.orderService.collection$;
-
-    this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'State', 'Total HT', 'Total TTC'];
-      //Demo tableau avec User + experiment mapping
-    // this.orderService.collectionUser$.subscribe(
-    //   (data: any) => {
-    //     console.log('Component - order list: ', data);
-    //   }
-    // )
-    // this.headersPageUser = ['#', 'Email', 'Prenom', 'Nom']
-
-    // Test unsubscribe sur behavior subject
-    // this.sub = this.versionService.versionNum$.subscribe(
-    //   (version: number) => console.log('Recpetion numero version behav', version)  
-    // );
-    this.versionNum$ = this.versionService.versionNum$;
-    
+    this.headersPage = ['Type Presta', 'Client', 'NbJour', 'TjmHt', 'Total HT', 'Total TTC', 'State'];
+    this.versionNum$ = this.versionService.versionNum$;    
   }
 
   ngOnInit(): void {
-    // console.log('****** On Init');
   }
 
   public onClickInitTitle(): void {
     this.titleComponent = { content : 'Other title' };
   }
 
-  ngOnDestroy(): void {
-    // console.log('****** On Destroy');
-    // this.sub.unsubscribe();
-  }
+  public onChangeState(order: Order, stateEvent: any ): void {
+    console.log(`commande : ${order.id}: state : ${stateEvent.target.value}`);
 
-  public total(val:number, coeff: number, tva?: number ): number {
-    this.count ++;
-    console.log('Count : ', this.count);
-    if(tva) {
-      return val * coeff * (1 + tva / 100)
-    } else {
-      return val * coeff;
-    }
+    const updatedOrder = new Order({...order, typePresta:"coach", state: stateEvent.target.value})
+    console.log('Updated order : ', updatedOrder);
+    this.orderService.update(updatedOrder).subscribe(
+      (orderStateUpdated: Order) => {
+        order = orderStateUpdated; // ne fonctionne pas comme on le voudrait
+      }
+    );
   }
-
 }

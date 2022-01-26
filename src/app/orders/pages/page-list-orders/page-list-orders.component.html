@@ -4,23 +4,20 @@
             <td>{{ item.typePresta }}</td>
             <td>{{ item.client }}</td>
             <td>{{ item.nbJours }}</td>
-            <td>{{ item.tjmHt }}</td>
-            <td>{{ item.state }}</td>
-            <td>{{ item | total }}</td>
-            <td>{{ item | total: true }}</td>
-            <!-- <td>{{ total(item.tjmHt, item.nbJours) }}</td>
-            <td>{{ total(item.tjmHt, item.nbJours, item.tva) }}</td> -->
+            <td>{{ item.tjmHt | currency }}</td>
+            <td>{{ item | total | currency }}</td>
+            <td>{{ item | total: true | currency }}</td>
+            <!-- <td>{{ item.state }}</td> -->
+            <td>
+                <select (change)="onChangeState(item, $event)">
+                    <option *ngFor="let state of stateOrder | keyvalue"
+                        [value]="state.value"
+                        [selected]="state.value === item.state"
+                    >{{ state.value }}</option>
+                </select>
+            </td>
         </tr>
     </app-table-light>
-    <!-- Demo tableau avec user -->
-    <!-- <app-table-light [headers]="headersPageUser">
-        <tr *ngFor="let item of collectionUser">
-            <td>{{ item.id }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.first_name }}</td>
-            <td>{{ item.last_name }}</td>
-        </tr>
-    </app-table-light> -->
     <app-btn></app-btn>
     <p *ngIf="versionNum$ | async as version">Le numéro de version est {{ version }}</p>
 </app-template-full-width>

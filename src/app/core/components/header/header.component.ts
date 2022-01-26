@@ -11,11 +11,6 @@ import { VersionService } from '../../services/version.service';
 export class HeaderComponent implements OnInit {
   public version!: number;
   constructor(private orderService: OrdersService, private versionService: VersionService) {
-    this.orderService.subCollection$.subscribe(
-      (resp: Order[]) => {
-        console.log('Component - header: ', resp);
-      }
-    )
    }
 
   ngOnInit(): void {
