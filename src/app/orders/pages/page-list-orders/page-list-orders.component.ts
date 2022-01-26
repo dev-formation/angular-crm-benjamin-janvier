@@ -22,8 +22,9 @@ export class PageListOrdersComponent implements OnInit {
     private orderService: OrdersService, 
     private versionService: VersionService,
     private router: Router) { 
-    this.collectionPage$ = this.orderService.collection$;
-    this.headersPage = ['','Type Presta', 'Client', 'NbJour', 'TjmHt', 'Total HT', 'Total TTC', 'State'];
+    this.collectionPage$ = this.orderService.subCollection$;
+    this.orderService.refreshCollection();
+    this.headersPage = ['','', 'Type Presta', 'Client', 'NbJour', 'TjmHt', 'Total HT', 'Total TTC', 'State'];
     this.versionNum$ = this.versionService.versionNum$;    
   }
 
@@ -48,5 +49,13 @@ export class PageListOrdersComponent implements OnInit {
 
   public onClickGoToEdit(clickedOrder: Order): void {
     this.router.navigate(['orders', 'edit', clickedOrder.id]);
+  }
+
+  public onClickDelete(clickedOrder: Order): void {
+    this.orderService.delete(clickedOrder.id).subscribe(
+      (resp: any) => {
+        console.log(resp);
+      }
+    )
   }
 }

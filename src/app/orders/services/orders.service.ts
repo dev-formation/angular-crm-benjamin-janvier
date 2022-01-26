@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 import { Order } from 'src/app/core/models/order';
 import { environment } from 'src/environments/environment';
 
@@ -22,6 +22,8 @@ export class OrdersService {
         })
       })
     );
+
+    
     
     // this.http.get<Order[]>(`${this.urlApi}/orders`).subscribe(
     //   (resp: Order[]) => {
@@ -29,6 +31,14 @@ export class OrdersService {
     //   }
     // )
 
+  }
+
+  public refreshCollection(): void {
+      this.collection$.subscribe(
+        (listOrder: Order[]) => {
+          this.subCollection$.next(listOrder);
+        }
+      )
   }
 
   public update(orderToUpdate: Order): Observable<Order> {
@@ -41,5 +51,11 @@ export class OrdersService {
 
   public getById(orderId: number): Observable<Order> {
     return this.http.get<Order>(`${this.urlApi}/orders/${orderId}`);
+  }
+
+  public delete(orderId: number): Observable<any> {
+    return this.http.delete<Order>(`${this.urlApi}/orders/${orderId}`).pipe(
+      tap(() => this.refreshCollection())
+    )
   }
 }

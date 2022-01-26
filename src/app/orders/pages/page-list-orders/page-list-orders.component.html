@@ -4,6 +4,9 @@
             <td>
                 <app-icon-edit (click)="onClickGoToEdit(item)"></app-icon-edit>
             </td>
+            <td>
+                <app-icon-delete (click)="onClickDelete(item)"></app-icon-delete>
+            </td>
             <td>{{ item.typePresta }}</td>
             <td>{{ item.client }}</td>
             <td>{{ item.nbJours }}</td>
