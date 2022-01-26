@@ -5,7 +5,7 @@ import { Order } from 'src/app/core/models/order';
   name: 'total'
 })
 export class TotalPipe implements PipeTransform {
-  transform(val: Order, tva?: boolean): number {
+  transform(val: any, tva?: boolean): number {
     console.log("---- Total Pipe used")
     if(tva) {
       return val.totalTTC();

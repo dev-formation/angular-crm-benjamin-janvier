@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageEditClientsComponent } from './page-edit-clients.component';
+import { PageAddClientComponent } from './page-add-client.component';
 
-describe('PageEditClientsComponent', () => {
-  let component: PageEditClientsComponent;
-  let fixture: ComponentFixture<PageEditClientsComponent>;
+describe('PageAddClientComponent', () => {
+  let component: PageAddClientComponent;
+  let fixture: ComponentFixture<PageAddClientComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageEditClientsComponent ]
+      declarations: [ PageAddClientComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageEditClientsComponent);
+    fixture = TestBed.createComponent(PageAddClientComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
