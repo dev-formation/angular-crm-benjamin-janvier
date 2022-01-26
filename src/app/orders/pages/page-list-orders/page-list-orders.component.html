@@ -18,6 +18,7 @@
             </td>
         </tr>
     </app-table-light>
-    <app-btn></app-btn>
+    <!-- <app-btn [label]="'Add an order'" [route]="'add'"></app-btn> -->
+    <app-btn label="Add an order" route="add"></app-btn>
     <p *ngIf="versionNum$ | async as version">Le numéro de version est {{ version }}</p>
 </app-template-full-width>
