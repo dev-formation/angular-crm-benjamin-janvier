@@ -33,11 +33,11 @@ export class PageListOrdersComponent implements OnInit {
   public onChangeState(order: Order, stateEvent: any ): void {
     console.log(`commande : ${order.id}: state : ${stateEvent.target.value}`);
 
-    const updatedOrder = new Order({...order, typePresta:"coach", state: stateEvent.target.value})
+    const updatedOrder = new Order({...order, state: stateEvent.target.value})
     console.log('Updated order : ', updatedOrder);
     this.orderService.update(updatedOrder).subscribe(
       (orderStateUpdated: Order) => {
-        order = orderStateUpdated; // ne fonctionne pas comme on le voudrait
+        order.state = orderStateUpdated.state;
       }
     );
   }
